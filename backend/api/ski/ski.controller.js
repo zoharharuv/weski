@@ -3,13 +3,13 @@ const skiService = require('./ski.service');
 
 async function search(req, res) {
 	try {
-		const player = req.body;
-		logger.info(`Generating hand for ${player?.name ?? 'Unknown'}`);
-		const playerWithNewHand = await skiService.search(player);
-		res.send(playerWithNewHand);
+		const query = req.body;
+		logger.info(`Searching ski sites for query ${JSON.stringify(query)}`);
+		const sites = await skiService.search(query);
+		res.send(sites);
 	} catch (err) {
-		logger.error('Failed to generate hand', err);
-		res.status(500).send({ err: 'Failed to generate hand' });
+		logger.error('Failed search for ski sites', err);
+		res.status(500).send({ err: 'Failed search for ski sites' });
 	}
 }
 
