@@ -10,13 +10,13 @@ const StyledSiteCard = styled.div`
 	background: ${({ theme }) => theme.colors.white};
 	border: 1px solid ${({ theme }) => theme.colors.lightGrey};
 	border-radius: 12px;
-	color: ${({ theme }) => theme.colors.black};
+	color: ${({ theme }) => theme.colors.grey};
 `;
 
 const SiteImage = styled.img`
 	width: 380px;
 	height: 100%;
-	border-radius: 12px;
+	border-radius: 12px 0 0 12px;
 `;
 
 const SiteContent = styled.div`
@@ -40,12 +40,16 @@ const PriceContainer = styled.div`
 	align-self: flex-end;
 `;
 
+const SiteName = styled.h1`
+	color: ${({ theme }) => theme.colors.darkBlue};
+`;
+
 export const SiteCard = ({ site }) => {
 	const { HotelName, HotelDescriptiveContent, HotelInfo, PricesInfo } = site;
 	const { URL: hotelImgUrl } = HotelDescriptiveContent.Images[0];
-	const { Position, Rating, Beds } = HotelInfo;
+	const { Position, Rating } = HotelInfo;
 
-	const priceString = `£${PricesInfo.AmountAfterTax} /per person`;
+	const priceString = `£${PricesInfo.AmountAfterTax ?? 0} /per person`;
 
 	const { distance } = Position.Distances.find(p => p.type === 'city_center') ?? '';
 	const distanceString = `${distance.split('m').join(' ')}m from center`;
@@ -54,9 +58,9 @@ export const SiteCard = ({ site }) => {
 		<StyledSiteCard>
 			<SiteImage src={hotelImgUrl} alt="hotel_photo" />
 			<SiteContent>
-				<h1>{HotelName}</h1>
+				<SiteName>{HotelName}</SiteName>
 				<StarsContainer>
-					{Array(Number(Rating))
+					{Array(Number(Rating ?? 0))
 						.fill('')
 						.map((_, idx) => (
 							<img key={idx} src={starImg} alt="star" />
