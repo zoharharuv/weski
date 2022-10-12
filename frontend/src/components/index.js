@@ -5,3 +5,4 @@ export * from './Card';
 export * from './CardDeck';
 export * from './Divider';
 export * from './Loader';
+export * from './SearchBar';
