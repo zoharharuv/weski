@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { SitesContainer, Loader, SearchBar } from '../components';
-import { TEXT } from '../consts';
 import { useForm } from '../hooks/useForm';
 import { skiService } from '../services/ski.service';
 const SITES_ARRAY = require('../data/data.json');
-
 
 const StyledMainPage = styled.section`
 	overflow-y: auto;
@@ -33,7 +31,9 @@ export const MainPage = () => {
 			const res = await skiService.search(query);
 			setSkiSites(res.data);
 			const { name: ski_site } = SITES_ARRAY.find(site => site.id === query.ski_site) ?? '';
-			setTitle(`${res.data.length} ski trips options . ${ski_site} . ${query.from_date} - ${query.to_date} . ${query.group_size} people`);
+			setTitle(
+				`${res.data.length} ski trips options . ${ski_site} . ${query.from_date} - ${query.to_date} . ${query.group_size} people`,
+			);
 			setIsLoading(false);
 		} catch (e) {
 			setIsLoading(false);

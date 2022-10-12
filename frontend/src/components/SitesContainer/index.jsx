@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TEXT } from '../../consts';
 import { SiteCard } from '../SiteCard';
 
 const StyledSitesContainer = styled.div`
@@ -28,7 +29,7 @@ export const SitesContainer = ({ title = '', sites = [] }) => {
 	return (
 		sites.length && (
 			<StyledSitesContainer>
-				<StyledHeader>Select your ski trip</StyledHeader>
+				<StyledHeader>{TEXT.SELECT_TRIP}</StyledHeader>
 				<StyledHeaderDetails>{title}</StyledHeaderDetails>
 				<StyledCardsContainer>
 					{sites.map((site, index) => {

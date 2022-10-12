@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import styled from 'styled-components';
+import { TEXT } from '../../consts';
 import weskiLogo from '../../assets/img/weski.svg';
 
 const SITES_ARRAY = require('../../data/data.json');
@@ -113,7 +114,7 @@ export const SearchBar = memo(function _SearchBar({ fields, onChange, onSearch }
 						onSearch();
 					}}
 				>
-					Search
+					{TEXT.SEARCH_TEXT}
 				</StyledSearchButton>
 			</StyledSearchFields>
 		</StyledSearch>

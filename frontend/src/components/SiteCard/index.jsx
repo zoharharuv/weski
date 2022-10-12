@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import starImg from '../../assets/img/star.svg';
 import { Divider } from '../Divider';
+import { TEXT } from '../../consts';
+import starImg from '../../assets/img/star.svg';
 
 const StyledSiteCard = styled.div`
 	display: flex;
@@ -29,6 +30,10 @@ const SiteContent = styled.div`
 	width: 480px;
 `;
 
+const SiteName = styled.h1`
+	color: ${({ theme }) => theme.colors.darkBlue};
+`;
+
 const StarsContainer = styled.div`
 	display: flex;
 	gap: 5px;
@@ -36,11 +41,15 @@ const StarsContainer = styled.div`
 
 const PriceContainer = styled.div`
 	display: flex;
+	align-items: center;
+	gap: 5px;
 	justify-self: flex-end;
 	align-self: flex-end;
 `;
 
-const SiteName = styled.h1`
+const StyledPrice = styled.span`
+	font-weight: bold;
+	font-size: 18px;
 	color: ${({ theme }) => theme.colors.darkBlue};
 `;
 
@@ -49,10 +58,10 @@ export const SiteCard = ({ site }) => {
 	const { URL: hotelImgUrl } = HotelDescriptiveContent.Images[0];
 	const { Position, Rating } = HotelInfo;
 
-	const priceString = `£${PricesInfo.AmountAfterTax ?? 0} /per person`;
+	const priceString = `£${PricesInfo.AmountAfterTax ?? 0}`;
 
 	const { distance } = Position.Distances.find(p => p.type === 'city_center') ?? '';
-	const distanceString = `${distance.split('m').join(' ')}m from center`;
+	const distanceString = distance ? `${distance.split('m').join(' ')}m from center` : '';
 
 	return (
 		<StyledSiteCard>
@@ -68,7 +77,10 @@ export const SiteCard = ({ site }) => {
 				</StarsContainer>
 				<p>{distanceString}</p>
 				<Divider />
-				<PriceContainer>{priceString}</PriceContainer>
+				<PriceContainer>
+					<StyledPrice>{priceString}</StyledPrice>
+					{TEXT.PER_PERSON}
+				</PriceContainer>
 			</SiteContent>
 		</StyledSiteCard>
 	);
