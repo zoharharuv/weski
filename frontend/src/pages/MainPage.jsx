@@ -11,8 +11,7 @@ const StyledMainPage = styled.section`
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
-	margin-top: 10px;
+	gap: 40px;
 `;
 
 export const MainPage = () => {

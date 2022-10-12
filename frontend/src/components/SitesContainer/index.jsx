@@ -14,7 +14,7 @@ const StyledHeader = styled.h1`
 `;
 
 const StyledHeaderDetails = styled.p`
-	color: #525d7a;
+	color: ${({ theme }) => theme.colors.grey};
 `;
 
 const StyledCardsContainer = styled.div`
