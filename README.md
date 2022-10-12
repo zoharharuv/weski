@@ -4,6 +4,8 @@ A demo for WeSki company.
 The app was written as part of an interview assignment.
 <br/>
 
+![image](https://user-images.githubusercontent.com/72209707/195363094-d7d30f3e-0faa-42a3-8489-3cea79d21e60.png)
+
 
 ## Technologies Used
 ```
