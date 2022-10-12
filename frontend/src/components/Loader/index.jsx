@@ -4,7 +4,8 @@ import LoaderImg from '../../assets/img/puff.svg';
 
 const StyledLoader = styled.div`
 	display: flex;
-	justify-content: center;
+	justify-self: center;
+	align-self: center;
 	img {
 		width: 150px;
 	}

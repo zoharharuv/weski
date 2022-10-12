@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { SitesContainer, Loader, SearchBar } from '../components';
 import { TEXT } from '../consts';
@@ -11,8 +11,6 @@ const StyledMainPage = styled.section`
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
 	gap: 30px;
 	margin-top: 10px;
 `;
@@ -23,7 +21,7 @@ export const MainPage = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const [skiSites, setSkiSites] = useState([]);
-	const [query, handleChange, setQuery] = useForm({
+	const [query, handleChange] = useForm({
 		ski_site: 1,
 		from_date: '12/04/2022',
 		to_date: '12/11/2022',
@@ -35,9 +33,8 @@ export const MainPage = () => {
 		try {
 			const res = await skiService.search(query);
 			setSkiSites(res.data);
-			const { name } = SITES_ARRAY.find(site => site.id === query.ski_site) ?? '';
-			console.log("🚀 ~ file: MainPage.jsx ~ line 39 ~ handleSearch ~ query.ski_site", query.ski_site)
-			setTitle(`${res.data.length} ski trips options . ${name} . ${query.from_date} - ${query.to_date} . ${query.group_size} people`);
+			const { name: ski_site } = SITES_ARRAY.find(site => site.id === query.ski_site) ?? '';
+			setTitle(`${res.data.length} ski trips options . ${ski_site} . ${query.from_date} - ${query.to_date} . ${query.group_size} people`);
 			setIsLoading(false);
 		} catch (e) {
 			setIsLoading(false);
